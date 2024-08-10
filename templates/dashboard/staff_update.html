@@ -1,0 +1,86 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}
+	{{ title }}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">		
+    <div class="row page-titles">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">Xodimlar</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Xodim o'zgartirish</a></li>
+        </ol>
+    </div>
+    <!-- row -->
+
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card card-bx m-b30">
+                <div class="card-header">
+                    <h3 class="title">Yangilash</h3>
+                </div>
+                <h3 class="text-center mt-5" style="color: darkred;">{{error}}</h3>
+
+                <form method="POST" class="profile-form">
+                    {% csrf_token %}
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 m-b30">
+                                <label class="form-label">First Name</label>
+                                <input type="text" class="form-control" name="first_name" value="{{ employee.first_name }}">
+                            </div>
+                            <div class="col-md-6 m-b30">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" class="form-control" name="last_name" value="{{ employee.last_name }}">
+                            </div>
+                            <div class="col-md-6 m-b30">
+                                <label class="form-label">Username</label>
+                                <input type="text" class="form-control" name="username" value="{{ employee.username }}">
+                            </div>
+                            <div class="col-md-6 m-b30">
+                                <label class="form-label">Password</label>
+                                <input type="password" class="form-control" name="password" placeholder="Leave blank to keep current password">
+                            </div>
+                            <div class="col-md-6 m-b30">
+                                <label class="form-label">Gender</label>
+                                <select class="form-control wide mh-auto" name="gender">
+                                    <option value="Male" {% if employee.gender == 'male' %}selected{% endif %}>Male</option>
+                                    <option value="Female" {% if employee.gender == 'female' %}selected{% endif %}>Female</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 m-b30">
+                                <label class="form-label">Phone</label>
+                                <input type="text" class="form-control" name="phone" value="{{ employee.phone }}">
+                            </div>
+                            <div class="col-md-6 m-b30">
+                                <label class="form-label">Salary</label>
+                                <input type="number" class="form-control" name="salary" value="{{ employee.salary }}">
+                            </div>
+                            <div class="col-md-6 m-b30">
+                                <label class="form-label">Workplace</label>
+                                <input type="text" class="form-control" name="workplace" value="{{ employee.workplace }}">
+                            </div>
+                            <div class="col-md-6 m-b30">
+                                <label class="form-label">Position</label>
+                                <input type="text" class="form-control" name="position" value="{{ employee.position }}">
+                            </div>
+                            <div class="col-md-6 m-b30">
+                                <label class="form-label">Age</label>
+                                <input type="number" class="form-control" name="age" value="{{ employee.age }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">UPDATE</button>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+    
+    
+</div>
+{% endblock %}

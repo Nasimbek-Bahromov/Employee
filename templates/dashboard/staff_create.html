@@ -1,0 +1,85 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}
+	{{ title }}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">		
+    <div class="row page-titles">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">Xodimlar</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Xodim qo'shish</a></li>
+        </ol>
+    </div>
+    <!-- row -->
+
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card card-bx m-b30">
+                <div class="card-header">
+                    <h3 class="title">Qo'shish</h3>
+                </div>
+                <h3 class="text-center mt-5" style="color: darkred;">{{error}}</h3>
+
+                <form class="profile-form" method="post">
+                    {% csrf_token %}
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 m-b30">
+                                <label class="form-label">First Name</label>
+                                <input type="text" class="form-control" name="first_name">
+                            </div>
+                            <div class="col-md-6 m-b30">
+                                <label class="form-label">Last Name</label>
+                                <input type="text" class="form-control" name="last_name">
+                            </div>
+                            <div class="col-md-6 m-b30">
+                                <label class="form-label">Username</label>
+                                <input type="text" class="form-control" name="username">
+                            </div>
+                            <div class="col-md-6 m-b30">
+                                <label class="form-label">Password</label>
+                                <input type="password" class="form-control" name = "password">
+                            </div>
+                            <div class="col-md-6 m-b30">
+                                <label class="form-label">Gender</label>
+                                <select class="form-control wide mh-auto" name="gender">
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 m-b30">
+                                <label class="form-label">Phone</label>
+                                <input type="text" class="form-control" name="phone">
+                            </div>
+                            <div class="col-md-6 m-b30">
+                                <label class="form-label">Salary</label>
+                                <input type="number" class="form-control" name="salary">
+                            </div>
+                            <div class="col-md-6 m-b30">
+                                <label class="form-label">Workplace</label>
+                                <input type="text" class="form-control" name="workplace">
+                            </div>
+                            <div class="col-md-6 m-b30">
+                                <label class="form-label">Position</label>
+                                <input type="text" class="form-control" name="position">
+                            </div>
+                            <div class="col-md-6 m-b30">
+                                <label class="form-label">Age</label>
+                                <input type="number" class="form-control" name="age">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Create</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    
+</div>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}
+	{{ title }}
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">		
+    <div class="row page-titles">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">Davomat</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Davomat olish</a></li>
+        </ol>
+    </div>
+    <!-- row -->
+
+
+    <div class="row">
+        <div class="col-6">
+            <div class="card card-bx ">
+                <div class="card-header">
+                    <h3 class="title">Davomat olish</h3>
+                </div>
+                <h3 class="text-center" style="color: darkred;">{{error}}</h3>
+
+                <form method="POST" class="profile-form">
+                    {% csrf_token %}
+                    
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-md-6 mb-3">
+                                <label for="employeeSelect" class="form-label">Xodim</label>
+                                <select class="form-control form-control-lg" id="employeeSelect" name="employee_id">
+                                    {% for employee in employees %}
+                                    <option value="{{ employee.id }}">{{ employee.get_full_name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="mb-3 mb-0">
+                                <label class="radio-inline me-3">
+                                    <input type="radio" name="status" class="form-check-input" value="on"> Keldi
+                                </label>
+                                <label class="radio-inline me-3">
+                                    <input type="radio" name="status" class="form-check-input" value="off"> Kelmadi
+                                </label>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="card-footer text-end">
+                        <button type="submit" class="btn btn-primary">Saqlash</button>
+                    </div>
+                </form>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+    
+    
+</div>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}
+	{{ title }}
+{% endblock %}
+
+{% block content %}
+	<div class="container-fluid">		
+		<div class="row page-titles">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item active"><a href="javascript:void(0)">Davomat</a></li>
+				<li class="breadcrumb-item"><a href="javascript:void(0)">Davomat Jadvali</a></li>
+			</ol>
+		</div>
+		<!-- row -->
+
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-header">
+						<h4 class="card-title">Davomat jadvali</h4>
+						<a href="{% url 'dashboard:attendence_start'%}" class="btn btn-outline-primary btn-md">Davomat olish</a>
+					</div>
+					<div class="card-body">
+						<div class="table-responsive">
+							<table id="example4" class="display" style="min-width: 845px">
+								<thead>
+									<tr>
+										<th>T/r</th>
+										<th>Full name</th>
+										<th>Position</th>
+										<th>Workplace</th>
+										<th>Date</th>
+										<th>Status</th>
+										
+									</tr>
+								</thead>
+								<tbody>
+									{% for a in attendences %}
+									<tr>
+										<td>{{ forloop.counter }}</td>
+										<td>{{a.employee.get_full_name}}</td>
+										<td>{{a.employee.position}}</td>
+										<td>{{a.employee.workplace}}</td>
+										<td>{{a.arrival_time}}</td>
+										{% if a.present %}
+										<td><span class="badge light badge-success">Keldi</span></td>
+										{% else %}
+										<td><span class="badge light badge-warning">Kelmadi</span></td>
+										{% endif %}
+									</tr>
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<style>
+		.search-hidden{
+			display: none;
+		}
+	</style>
+{% endblock %}

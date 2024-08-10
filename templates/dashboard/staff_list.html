@@ -1,0 +1,96 @@
+{% extends 'dashboard/base.html' %}
+
+{% block title %}
+	{{ title }}
+{% endblock %}
+
+
+{% block content %}
+	<div class="container-fluid">		
+		<div class="row page-titles">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item active"><a href="javascript:void(0)">Xodimlar</a></li>
+				<li class="breadcrumb-item"><a href="javascript:void(0)">Xodimlar</a></li>
+			</ol>
+		</div>
+		<!-- row -->
+
+
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-header">
+						<h4 class="card-title">Xodimlar</h4>
+						<a href="{% url 'dashboard:staff_create'%}" class="btn btn-outline-primary btn-md">Xodim qo'shish</a>
+					</div>
+					<div class="card-body">
+						<div class="table-responsive">
+							<table id="example3" class="display" style="min-width: 845px">
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Position</th>
+										<th>Workplace</th>
+										<th>Gender</th>
+										<th>Mobile</th>
+										<th>Salary</th>
+										<th>Start Date</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for employee in employees %}
+									<tr>
+										<td>{{employee.get_full_name}}</td>
+										<td>{{employee.position}}</td>
+										<td>{{employee.workplace}}</td>
+										<td>{{employee.gender}}</td>
+										<td><a href="javascript:void(0);"><strong>{{employee.phone}}</strong></a></td>
+										<td><a href="javascript:void(0);"><strong>${{employee.salary}}</strong></a></td>
+										<td>{{employee.start_date}}</td>
+										<td>
+											<div class="d-flex">
+												<a href="{% url 'dashboard:staff_update' employee.id %}" class="btn btn-primary shadow btn-xs sharp me-1"><i class="fas fa-pencil-alt"></i></a>
+												<a href="#" class="btn btn-danger shadow btn-xs sharp" data-bs-toggle="modal" data-bs-target="#staff_{{employee.id}}"><i class="fa fa-trash"></i></a>
+											</div>												
+										</td>												
+									</tr>
+
+									<!-- Modal -->
+									<div class="modal fade" id="staff_{{employee.id}}">
+										<div class="modal-dialog modal-dialog-centered" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title">Delete staff? </h5>
+													<button type="button" class="btn-close" data-bs-dismiss="modal">
+													</button>
+												</div>
+												<div class="modal-body">
+													<p>
+														'{{employee.get_full_name}}' Shu xodimni rostdan ham o'chirmoqchimisiz?
+													</p>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-danger light" data-bs-dismiss="modal">Yo'q</button>
+													<a href="{% url 'dashboard:staff_delete' employee.id %}" class="btn btn-primary">Ha</a>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									{% endfor %}
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<style>
+		.search-hidden{
+			display: none;
+		}
+	</style>
+{% endblock %}
