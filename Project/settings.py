@@ -11,21 +11,27 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import environ
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+env = environ.Env()
+environ.Env.read_env()
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-hx62mbh4oe9j%e%9556au*nbnarz(vdak2v)$g4-82-#akzg0u'
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
+
 
 
 # Application definition
@@ -37,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main'
+    'main',
 ]
 
 MIDDLEWARE = [
@@ -116,11 +122,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [BASE_DIR / 'static/']
-MEDIA_URL = "media/"
-MEDIA_ROOT = BASE_DIR / "media/"
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
+
+STATIC_ROOT = os.path.join('staticfiles')
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR.joinpath('media')
 
 
 # Default primary key field type
